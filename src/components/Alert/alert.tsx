@@ -8,18 +8,35 @@ export enum AlertType {
   Warning = 'warning'
 }
 
+interface BaseAlertProps {
+  className?: string;
+  title?: string;
+  descriptor?: string;
+  'close-text'?: string;
+}
 
-
-const Alert: React.FC = (props) => {
+const Alert: React.FC<BaseAlertProps> = (props) => {
   const {
-    alertType
+    className,
+    alertType,
+    title,
+    description,
+    ...restProps
   } = props
-  const classes = classNames('alert', {
+  const classes = classNames('alert', className, {
     [`alert-${alertType}`]: alertType
   })
+  const closePopup = (e) => {
+    e.target.parentNode.style.display = "none";
+  }
   return (
-    <div>
-      <span>this is alert!</span>
+    <div className={classes}>
+      <span className="title">{title}</span>
+      <div 
+        className={["close", restProps['close-text'] ? "text": "cross"].join(" ")} 
+        onClick={closePopup}
+      >{restProps['close-text']}</div>
+      <div className="description">{description}</div>
     </div>
   )
 }

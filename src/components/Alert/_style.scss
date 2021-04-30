@@ -1,0 +1,59 @@
+.alert {
+  position: relative;
+  width: $alert-width;
+  height: auto;
+  padding: $alert-padding-y $alert-padding-x;
+  color: $body-color;
+  border-radius: $border-radius;
+  text-align: center;
+  vertical-align: middle;
+  .title {
+    font-weight: $font-weight-bold;
+  }
+  .close {
+    position: absolute;
+    display: inline-block;  
+    cursor: pointer;
+  }
+  .text {
+    right: 8px;
+    font-size: $font-size-mini;
+  }
+  .cross {
+      width: 14px;
+      height: 1px;
+      top: 12px;
+      left: 378px;
+      background: $gray-500;
+      transform: rotate(45deg);   
+      -webkit-transform: rotate(45deg);
+      &::after {
+        content: "";
+        display: block;
+        width: 14px;
+        height: 1px;
+        background: $gray-500;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+      }
+  }
+  .description {
+    font-size: $font-size-mini;
+  }
+}
+
+.alert-success {
+  @include alert-style($primary, $white);
+}
+
+.alert-default {
+  @include alert-style($gray-250, $gray-500);
+}
+
+.alert-danger {
+  @include alert-style($shallowpink, $peonyred);
+}
+
+.alert-warning {
+  @include alert-style($goldenrod, $ginger);
+}

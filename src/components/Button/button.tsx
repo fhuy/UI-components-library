@@ -36,6 +36,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     href,
     ...restProps
   } = props
+  console.log('dis', disabled);
+  console.log('cls', className);
+  
   // btn, btn-lg, btn-primary
   const classes = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
