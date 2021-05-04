@@ -3,8 +3,7 @@ import Button, { ButtonType, ButtonSize } from './components/Button/button';
 import Alert from './components/Alert/alert';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
-import Menu1 from './components/Menu/menu1';
-import MenuItem1 from './components/Menu/menuitem1';
+import SubMenu from './components/Menu/subMenu'
 
 // function App() {
 const App: React.FC = () => {
@@ -16,16 +15,25 @@ const App: React.FC = () => {
           onSelect={(index) => {
             alert(index);
           }}
-          mode="vertical"
+          // mode="vertical"
+          mode="horizontal"
         >
-          <MenuItem index={0}>cool link</MenuItem>
-          <MenuItem index={1} disabled>
+          <MenuItem>cool link</MenuItem>
+          <MenuItem disabled>
             cool link2
           </MenuItem>
-          <MenuItem index={2}>cool link3</MenuItem>
+          <SubMenu title="dropdown">
+            <MenuItem>
+              dropdown 1
+            </MenuItem>
+            <MenuItem>
+              dropdown 2
+            </MenuItem>
+          </SubMenu>
+          <MenuItem>cool link3</MenuItem>
           <li>?</li>
         </Menu>
-        <Alert
+        {/* <Alert
           className="custom"
           alertType="default"
           title="消息提示"
@@ -64,18 +72,7 @@ const App: React.FC = () => {
         <Button btnType={ButtonType.Link} href="http://www.baidu.com">
           {' '}
           Baidu{' '}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        </Button> */}
       </header>
     </div>
   );

@@ -17,6 +17,7 @@ export interface MenuProps {
 interface IMenuContext {
   index: number;
   onSelect: SelectCallback;
+  mode?: MenuMode;
 }
 
 export const MenuContext = createContext<IMenuContext>();
@@ -30,7 +31,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   const classes = classNames('viking-menu', className, {
     'menu-vertical': mode === 'vertical',
-    'menu-horizontal': mode !== 'veertical'
+    'menu-horizontal': mode !== 'vertical'
   });
   const handleClick = (index: number) => {
     console.log(`接收到的index：${index}`);
@@ -44,7 +45,8 @@ const Menu: React.FC<MenuProps> = (props) => {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const passedContext: IMenuContext = {
     index: currentActive ? currentActive : 0,
-    onSelect: handleClick
+    onSelect: handleClick,
+    mode: mode
   };
 
   const renderChildren = () => {
@@ -57,11 +59,8 @@ const Menu: React.FC<MenuProps> = (props) => {
       const { name } = childElement.type;
       console.log('name', name);
 
-      if (name === 'MenuItem') {
-        console.log(
-          'clone-after',
-          React.cloneElement(childElement)
-        );
+      if (name === 'MenuItem' || name === 'SubMenu') {
+        console.log('clone-after', React.cloneElement(childElement));
         return React.cloneElement(childElement, {
           index
         });
