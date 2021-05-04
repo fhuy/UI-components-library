@@ -3,27 +3,29 @@ import classNames from 'classnames';
 import { MenuItemProps } from './menuItem';
 
 type MenuMode = 'horizontal' | 'vertival';
-type SelectCallback = (selectedIndex: number) => void;
+type SelectCallback = (selectedIndex: string) => void;
 
 export interface MenuProps {
-  defaultIndex?: number;
+  defaultIndex?: string;
   className?: string;
   mode?: MenuMode;
   style?: React.CSSProperties;
   // onSelect?: (selectedIndex: number) => void;
   onSelect?: SelectCallback;
+  defaultOpenSubMenus?: string[];
 }
 
 interface IMenuContext {
-  index: number;
+  index: string;
   onSelect: SelectCallback;
   mode?: MenuMode;
+  defaultOpenSubMenus?: string[]
 }
 
 export const MenuContext = createContext<IMenuContext>();
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { className, mode, style, children, defaultIndex, onSelect } = props;
+  const { className, mode, style, children, defaultIndex, onSelect, defaultOpenSubMenus } = props;
   console.log('children', children);
 
   const [currentActive, setActive] = useState(defaultIndex);
@@ -33,7 +35,7 @@ const Menu: React.FC<MenuProps> = (props) => {
     'menu-vertical': mode === 'vertical',
     'menu-horizontal': mode !== 'vertical'
   });
-  const handleClick = (index: number) => {
+  const handleClick = (index: string) => {
     console.log(`接收到的index：${index}`);
 
     setActive(index);
@@ -44,9 +46,10 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const passedContext: IMenuContext = {
-    index: currentActive ? currentActive : 0,
+    index: currentActive ? currentActive : '0',
     onSelect: handleClick,
-    mode: mode
+    mode,
+    defaultOpenSubMenus
   };
 
   const renderChildren = () => {
@@ -62,7 +65,7 @@ const Menu: React.FC<MenuProps> = (props) => {
       if (name === 'MenuItem' || name === 'SubMenu') {
         console.log('clone-after', React.cloneElement(childElement));
         return React.cloneElement(childElement, {
-          index
+          index: index.toString()
         });
 
         // return child;
@@ -83,8 +86,9 @@ const Menu: React.FC<MenuProps> = (props) => {
 };
 
 Menu.defaultProps = {
-  defaultIndex: 0,
-  mode: 'horizontal'
+  defaultIndex: '0',
+  mode: 'horizontal',
+  defaultOpenSubMenus: []
 };
 
 export default Menu;
