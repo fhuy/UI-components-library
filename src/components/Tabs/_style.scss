@@ -1,0 +1,60 @@
+.viking-tabs {
+  display: flex;
+  .tab-item {
+    .label {
+      padding: $tab-item-padding;
+      cursor: pointer;
+      border-bottom: $tab-item-active-border-width solid $tab-item-disabled-color;
+    }
+    .content {
+      position: absolute;
+      left: 0;
+      padding: $tab-item-padding;
+      display: none;
+    }
+    &.is-disabled {
+      .label {
+        color: $tab-item-disabled-color;
+        // pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+    &.is-active {
+      .content {
+        display: block !important;
+      }
+    }
+  }
+  &.card {
+    .tab-item {
+      &.is-active {
+        .label {
+          border: $border-width solid $tab-border-color;
+          border-bottom: none;
+          border-radius: $border-radius;
+          color: $primary;
+        }
+      }
+      .label {
+        border-bottom: $border-width solid $tab-border-color;
+      }
+    }
+  }
+  &.default {
+    .tab-item {
+      .label {
+        border-bottom: $tab-item-active-border-width solid $tab-border-color;
+      }
+    }
+
+    .tab-item.is-active {
+      .label {
+        border-bottom: $tab-item-active-border-width solid $tab-item-active-color;
+        color: $primary;
+      }
+      .content {
+        display: block;
+      }
+    }
+  }
+}

@@ -19,25 +19,21 @@ interface IMenuContext {
   index: string;
   onSelect: SelectCallback;
   mode?: MenuMode;
-  defaultOpenSubMenus?: string[]
+  defaultOpenSubMenus?: string[];
 }
 
 export const MenuContext = createContext<IMenuContext>();
 
 const Menu: React.FC<MenuProps> = (props) => {
   const { className, mode, style, children, defaultIndex, onSelect, defaultOpenSubMenus } = props;
-  console.log('children', children);
 
   const [currentActive, setActive] = useState(defaultIndex);
-  console.log(`currentActive:${currentActive}, setActive:${setActive}`);
 
   const classes = classNames('viking-menu', className, {
     'menu-vertical': mode === 'vertical',
     'menu-horizontal': mode !== 'vertical'
   });
   const handleClick = (index: string) => {
-    console.log(`接收到的index：${index}`);
-
     setActive(index);
     if (onSelect) {
       onSelect(index);
@@ -53,17 +49,13 @@ const Menu: React.FC<MenuProps> = (props) => {
   };
 
   const renderChildren = () => {
-    console.log('react-children', React.Children);
-
     return React.Children.map(children, (child, index) => {
       const childElement = child as React.FunctionComponentElement<MenuItemProps>;
-      console.log('single-child', child);
+      console.dir('kl', childElement.type);
 
       const { name } = childElement.type;
-      console.log('name', name);
 
       if (name === 'MenuItem' || name === 'SubMenu') {
-        console.log('clone-after', React.cloneElement(childElement));
         return React.cloneElement(childElement, {
           index: index.toString()
         });

@@ -236,7 +236,6 @@ $menu-item-active-border-width: 2px !default;
 $menu-item-disabled-color: $gray-600 !default;
 
 //sub-menu
-//submenu
 $submenu-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
 
 //input
@@ -287,7 +286,6 @@ $input-group-addon-bg: $gray-200 !default;
 $input-group-addon-border-color: $input-border-color !default;
 
 // Progress bars
-
 $progress-font-size: $font-size-base * 0.75 !default;
 $progress-bg: $gray-200 !default;
 $progress-border-radius: $border-radius !default;
@@ -299,3 +297,12 @@ $alert-width: 400px !default;
 $alert-height: 30px !default;
 $alert-padding-y: 0.5rem !default;
 $alert-padding-x: 1rem !default;
+
+// tabs
+$tab-border-color: $border-color !default;
+
+// tab-item
+$tab-item-padding: 0.5rem !default;
+$tab-item-active-color: $primary !default;
+$tab-item-active-border-width: 2px !default;
+$tab-item-disabled-color: $gray-600 !default;

@@ -28,8 +28,6 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 const Button: React.FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href, ...restProps } = props;
-  console.log('dis', disabled);
-  console.log('cls', className);
 
   // btn, btn-lg, btn-primary
   const classes = classNames('btn', className, {
